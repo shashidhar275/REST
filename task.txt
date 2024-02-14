@@ -1,0 +1,15 @@
+We are building a hybrid server
+REST API - JSON 
+GET /users - HTML Document Render
+GET /api/users - List all users JSON 
+
+GET /api/users/1 - Get the user with ID 1            //Dynamic path route -> because /1 1can be anything
+GET /api/users/2 - Get the user with ID 2
+
+Dynamic path parameters
+GET /api/users/:id
+:id -> variable | dynamic variable
+
+POST /api/users - Create new user 
+
+PATCH /api/users/1 - Edit the user with ID 1
