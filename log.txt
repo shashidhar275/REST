@@ -1,0 +1,19 @@
+1708366662371: GET: /api/users1708366852913: GET: /api/users
+
+1708366888706: GET: /api/users
+1708366904567: GET: /api/users
+1708366915019: GET: /api/users/1001
+1708367048240: GET: ::1: /api/users/1001
+1708372215576: GET: ::1: /api/users
+1708372250505: GET: ::1: /api/users/1001
+1708372328715: GET: ::1: /api/users/1001
+1708372393048: GET: ::1: /api/users
+1708372431982: GET: ::1: /api/users
+1708372487196: GET: ::1: /api/users
+1708375445067: GET: ::1: /api/users
+1708375449198: POST: ::1: /api/users
+1708375454244: POST: ::1: /api/users
+1708375474683: POST: ::1: /api/users
+1708375805749: POST: ::1: /api/users
+1708375827685: POST: ::1: /api/users
+1708375833112: POST: ::1: /api/users

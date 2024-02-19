@@ -7,6 +7,13 @@ const PORT = 8000;
 //Middleware - Plugin
 app.use(express.urlencoded({extended: false}));  //Whenever URL Encoded form data is sent to the server ...then this middleware will help to add the content in the body ...middleware always runs for every middleware
 
+//Custom middleware (Below is a practical use case of a middleware)
+app.use((req,res,next)=>{
+    fs.appendFile('log.txt',`\n${Date.now()}: ${req.method}: ${req.ip}: ${req.path}`,(err,data)=>{
+        next();
+    });
+});
+
 //Routes
 app.get('/users',(req,res)=>{
     const html =                            //This is called SERVER SIDE RENDERING
@@ -18,6 +25,9 @@ app.get('/users',(req,res)=>{
 
 //REST API points
 app.get('/api/users',(req,res)=>{
+    console.log(req.headers);
+    res.setHeader('X-myName','Shashidhar');
+    //Always add X to custom header
     return res.json(users);
 });
 
@@ -27,7 +37,7 @@ app
     const id = Number(req.params.id);
     const user = users.find(user => user.id === id);
     if(!user){
-        return res.json({'Status': 'Id not found'});
+        return res.status(404).json({'Status': 'Id not found'});
     }else{
         return res.json(user);       //It's good practise to use return   
     }
@@ -77,9 +87,13 @@ app
 app.post('/api/users',(req,res)=>{
     //Create new user
     const body = req.body;
+    if(!body || !body.first_name || !body.last_name || !body.email || !body.gender || !body.job_title)
+    {
+        return res.status(400).json({'Msg': "All fields are required..."});
+    }
     users.push({...body, id : users.length + 1});
     fs.writeFile('./MOCK_DATA.json',JSON.stringify(users),(err)=>{
-        return res.json({'Status': 'Success',id: users.length});
+        return res.status(201).json({'Status': 'Success',id: users.length});
     });
 });
 
